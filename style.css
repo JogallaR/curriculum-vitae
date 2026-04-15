@@ -131,6 +131,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   position: relative; overflow: hidden;
 }
 
+.cv-page .skill-bar { height: 4px; background: rgba(128,128,128,0.2); border-radius: 2px; margin-top: 6px; }
+.cv-page .skill-bar-fill { height: 100%; background: var(--cv-accent); border-radius: 2px; }
+
 /* TEMPLATE 1: Classic Sidebar */
 .tpl-classic .cv-sidebar { width: 38%; padding: 32px 22px; background: var(--cv-accent); color: var(--cv-accent-text-color, white); display: flex; flex-direction: column; gap: 20px; }
 .tpl-classic .cv-main { width: 62%; padding: 40px 32px; }
@@ -144,12 +147,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .tpl-classic .contact-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
 .tpl-classic .contact-item i { width: 14px; text-align: center; opacity: .7; }
 .tpl-classic .cv-sec-title { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--cv-accent); border-bottom: 2px solid var(--cv-accent2); padding-bottom: 5px; margin-bottom: 14px; margin-top: 24px; }
+.tpl-classic .cv-sidebar .cv-sec-title { color: var(--cv-accent-text-color, white); border-bottom-color: rgba(128,128,128,.3); }
 .tpl-classic .cv-sec-title:first-child { margin-top: 0; }
 .tpl-classic .cv-item { margin-bottom: 14px; }
 .tpl-classic .cv-item-title { font-size: 14px; font-weight: 600; color: #222; }
+.tpl-classic .cv-sidebar .cv-item-title { color: var(--cv-accent-text-color, white); }
 .tpl-classic .cv-item-sub { font-size: 12px; color: #666; margin-top: 2px; }
+.tpl-classic .cv-sidebar .cv-item-sub { color: var(--cv-accent-text-color, white); opacity: 0.8; }
 .tpl-classic .cv-item-desc { font-size: 12px; color: #555; margin-top: 4px; line-height: 1.5; }
-.tpl-classic .skill-bar { height: 4px; background: rgba(255,255,255,.2); border-radius: 2px; margin-top: 4px; }
+.tpl-classic .cv-sidebar .cv-item-desc { color: var(--cv-accent-text-color, white); opacity: 0.7; }
+.tpl-classic .skill-bar { height: 4px; background: rgba(128,128,128,.2); border-radius: 2px; margin-top: 4px; }
 .tpl-classic .skill-bar-fill { height: 100%; background: var(--cv-accent2); border-radius: 2px; }
 
 /* TEMPLATE 2: Minimal Top */
@@ -173,22 +180,26 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .tpl-minimal .cv-item-desc { font-size: 12px; color: #555; margin-top: 4px; line-height: 1.5; }
 
 /* TEMPLATE 3: Modern Split */
-.tpl-modern .cv-sidebar { width: 36%; background: var(--cv-accent2); color: white; padding: 40px 24px; display: flex; flex-direction: column; gap: 22px; }
+.tpl-modern .cv-sidebar { width: 36%; background: var(--cv-accent2); color: var(--cv-accent2-text-color, white); padding: 40px 24px; display: flex; flex-direction: column; gap: 22px; }
 .tpl-modern .cv-main { width: 64%; padding: 40px 32px; background: white; }
-.tpl-modern .cv-photo { width: 110px; height: 110px; border-radius: 12px; margin: 0 auto 16px; overflow: hidden; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; }
+.tpl-modern .cv-photo { width: 110px; height: 110px; border-radius: 12px; margin: 0 auto 16px; overflow: hidden; background: rgba(128,128,128,.3); display: flex; align-items: center; justify-content: center; }
 .tpl-modern .cv-photo img { width: 100%; height: 100%; object-fit: cover; }
-.tpl-modern .cv-photo i { font-size: 50px; color: rgba(255,255,255,.5); }
+.tpl-modern .cv-photo i { font-size: 50px; color: rgba(128,128,128,.5); }
 .tpl-modern .cv-name { font-size: 24px; font-weight: 700; color: var(--cv-accent); margin-bottom: 4px; letter-spacing: -.5px; }
 .tpl-modern .cv-role { font-size: 13px; color: var(--cv-accent2); font-weight: 500; background: rgba(52,152,219,.1); display: inline-block; padding: 3px 10px; border-radius: 20px; margin-bottom: 20px; }
 .tpl-modern .sidebar-sec h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
 .tpl-modern .contact-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
-.tpl-modern .contact-item i { background: rgba(255,255,255,.2); width: 22px; height: 22px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.tpl-modern .contact-item i { background: rgba(128,128,128,.2); width: 22px; height: 22px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
 .tpl-modern .cv-sec-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: #999; border-bottom: 1px solid #e8e8e8; padding-bottom: 5px; margin-bottom: 14px; margin-top: 24px; }
+.tpl-modern .cv-sidebar .cv-sec-title { color: var(--cv-accent2-text-color, white); border-bottom-color: rgba(128,128,128,.3); }
 .tpl-modern .cv-sec-title:first-child { margin-top: 0; }
 .tpl-modern .cv-item { margin-bottom: 14px; }
 .tpl-modern .cv-item-title { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+.tpl-modern .cv-sidebar .cv-item-title { color: var(--cv-accent2-text-color, white); }
 .tpl-modern .cv-item-sub { font-size: 11px; color: var(--cv-accent2); font-weight: 500; margin-top: 2px; }
+.tpl-modern .cv-sidebar .cv-item-sub { color: var(--cv-accent2-text-color, white); opacity: 0.9; }
 .tpl-modern .cv-item-desc { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.5; }
+.tpl-modern .cv-sidebar .cv-item-desc { color: var(--cv-accent2-text-color, white); opacity: 0.8; }
 .tpl-modern .tag { display: inline-block; background: rgba(52,152,219,.1); color: var(--cv-accent2); padding: 2px 8px; border-radius: 4px; font-size: 11px; margin: 2px; }
 
 /* TEMPLATE 4: Executive */
@@ -264,10 +275,11 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 
 /* TEMPLATE 7: Elegant */
 .tpl-elegant { flex-direction: column; background: #fff; }
-.tpl-elegant .cv-header { background: #fcfaf5; padding: 40px 48px 30px; text-align: center; border-bottom: 1px solid #eaeaea; }
+.tpl-elegant .cv-header { background: #fcfaf5; padding: 40px 48px 64px; text-align: center; border-bottom: 1px solid #eaeaea; }
 .tpl-elegant .cv-name { font-family: 'Times New Roman', serif; font-size: 38px; color: var(--cv-accent); font-weight: normal; letter-spacing: 1px; }
 .tpl-elegant .cv-role { font-size: 15px; color: var(--cv-accent2); letter-spacing: 3px; text-transform: uppercase; margin-top: 8px; margin-bottom: 20px; }
 .tpl-elegant .cv-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; font-size: 12px; color: #666; }
+.tpl-elegant .contact-item { display: flex; align-items: center; gap: 6px; }
 .tpl-elegant .cv-body { display: flex; padding: 32px 48px; gap: 40px; position: relative; }
 .tpl-elegant .cv-photo-container { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,.05); background: #eee; display: flex; align-items: center; justify-content: center; }
 .tpl-elegant .cv-photo img { width: 100%; height: 100%; object-fit: cover; }

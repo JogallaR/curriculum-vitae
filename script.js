@@ -373,6 +373,7 @@ function applyColors(c1, c2) {
   
   // Per al Creative, que té un gradient, agafem la mitjana dels dos o tirem del principal
   const textC2 = getTextColorForBackground(c2);
+  document.documentElement.style.setProperty('--cv-accent2-text-color', textC2);
   // Si qualsevol dels dos és molt clar, millor utilitzar fosc
   document.documentElement.style.setProperty('--cv-gradient-text-color', textC === '#111827' || textC2 === '#111827' ? '#111827' : '#ffffff');
 }
@@ -393,9 +394,13 @@ function actualitzar() {
   const cv = document.getElementById('cv-a4');
   cv.className = `cv-page tpl-${currentTemplate}`;
 
+  const chkPhoto = document.getElementById('chkPhoto');
+  const showPhoto = chkPhoto ? chkPhoto.checked : true;
+
   const photoHTML = fotoData
     ? `<img src="${fotoData}" alt="foto">`
     : `<i class="fas fa-user"></i>`;
+  const photoBlock = showPhoto ? `<div class="cv-photo">${photoHTML}</div>` : '';
 
   const contactItems = () => {
     const rows = [];
@@ -463,7 +468,7 @@ function actualitzar() {
   if (currentTemplate === 'classic') {
     cv.innerHTML = `
       <div class="cv-sidebar">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         ${modules.sobre ? `<div class="sidebar-sec"><h4>${d['cv-sobre']}</h4><p>${sobre||'...'}</p></div>` : ''}
         <div class="sidebar-sec"><h4>${d['cv-contacte']}</h4>${contactItems()}</div>
         ${renderedSide}
@@ -477,7 +482,7 @@ function actualitzar() {
   } else if (currentTemplate === 'minimal') {
     cv.innerHTML = `
       <div class="cv-header">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         <div>
           <div class="cv-name">${nom}</div>
           <div class="cv-role">${prof}</div>
@@ -497,7 +502,7 @@ function actualitzar() {
   } else if (currentTemplate === 'modern') {
     cv.innerHTML = `
       <div class="cv-sidebar">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         ${modules.sobre ? `<div class="sidebar-sec"><h4>${d['cv-sobre']}</h4><p style="font-size:12px;line-height:1.6;">${sobre||'...'}</p></div>` : ''}
         <div class="sidebar-sec"><h4>${d['cv-contacte']}</h4>${contactItems()}</div>
         ${renderedSide}
@@ -512,7 +517,7 @@ function actualitzar() {
     const contactsTop = [tel,mail,loc,web].filter(Boolean).map(x=>`<div>${x}</div>`).join('');
     cv.innerHTML = `
       <div class="cv-top">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         <div>
           <div class="cv-name">${nom}</div>
           <div class="cv-role">${prof}</div>
@@ -529,7 +534,7 @@ function actualitzar() {
   } else if (currentTemplate === 'dark') {
     cv.innerHTML = `
       <div class="cv-sidebar">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         ${modules.sobre ? `<div class="sidebar-sec"><h4>${d['cv-sobre']}</h4><p>${sobre||'...'}</p></div>` : ''}
         <div class="sidebar-sec"><h4>${d['cv-contacte']}</h4>${contactItems()}</div>
         ${renderedSide}
@@ -542,7 +547,7 @@ function actualitzar() {
   } else if (currentTemplate === 'creative') {
     cv.innerHTML = `
       <div class="cv-header">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         <div>
           <div class="cv-name">${nom}</div>
           <div class="cv-role">${prof}</div>
@@ -566,7 +571,7 @@ function actualitzar() {
         <div class="cv-contacts">${contactItems()}</div>
       </div>
       <div class="cv-body">
-        <div class="cv-photo-container"><div class="cv-photo">${photoHTML}</div></div>
+        ${showPhoto ? `<div class="cv-photo-container">${photoBlock}</div>` : ''}
         <div class="cv-content">
           <div class="cv-main-col">
             ${modules.sobre ? `<div class="cv-sec-title">${d['cv-sobre']}</div><p class="cv-sobre-text">${sobre}</p>` : ''}
@@ -581,7 +586,7 @@ function actualitzar() {
     const contactsTop = [tel,mail,loc,web].filter(Boolean).map(x=>`<div><i class="fas fa-caret-right" style="color:var(--cv-accent);margin-right:4px;"></i>${x}</div>`).join('');
     cv.innerHTML = `
       <div class="cv-header">
-        <div class="cv-photo">${photoHTML}</div>
+        ${photoBlock}
         <div class="cv-header-info">
           <div class="cv-name">${nom}</div>
           <div class="cv-role">${prof}</div>
@@ -694,6 +699,7 @@ function exportarJSON() {
     loc: document.getElementById('inLoc').value,
     web: document.getElementById('inWeb').value,
     foto: fotoData,
+    showPhoto: document.getElementById('chkPhoto') ? document.getElementById('chkPhoto').checked : true,
     items, modules, moduleOrder, template: currentTemplate, lang,
     colors: {
       c1: document.getElementById('customColor1').value,
@@ -727,6 +733,9 @@ function carregarJSON(event) {
       document.getElementById('inLoc').value = data.loc || '';
       document.getElementById('inWeb').value = data.web || '';
       if (data.foto) fotoData = data.foto;
+      if (data.showPhoto !== undefined && document.getElementById('chkPhoto')) {
+        document.getElementById('chkPhoto').checked = data.showPhoto;
+      }
       if (data.items) {
         items = data.items;
         ['exp','est','skills','idi','altres'].forEach(t => renderItemList(t));

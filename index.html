@@ -75,20 +75,26 @@
           <div class="editor-section-body">
             <div class="field">
               <label data-key="t-foto">Foto de perfil</label>
-              <label class="custom-file-upload">
-                <input type="file" accept="image/*" onchange="gestionarFoto(event)" style="display:none;">
-                <i class="fas fa-camera"></i> <span data-key="t-choose-file">Pujar imatge</span>
-              </label>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <label class="custom-file-upload" style="flex:1;">
+                  <input type="file" accept="image/*" onchange="gestionarFoto(event)" style="display:none;">
+                  <i class="fas fa-camera"></i> <span data-key="t-choose-file">Pujar imatge</span>
+                </label>
+                <div style="display:flex; align-items:center; gap:6px; color:var(--text2); font-size:13px; margin-top:0;">
+                  <input type="checkbox" id="chkPhoto" checked onchange="actualitzar()" style="width:16px; height:16px; margin:0;">
+                  <span data-key="t-show-photo">Mostrar</span>
+                </div>
+              </div>
             </div>
             <div class="field">
               <label data-key="t-nom">Nom i Cognoms</label>
               <input type="text" id="inNom" oninput="actualitzar(); spellCheck(this)" data-ph="ph-nom"
-                placeholder="Anna García López">
+                placeholder="Ex: Anna García">
             </div>
             <div class="field">
               <label data-key="t-prof">Professió</label>
               <input type="text" id="inProf" oninput="actualitzar(); spellCheck(this)" data-ph="ph-prof"
-                placeholder="Dissenyadora UX/UI">
+                placeholder="Ex: Dissenyadora UX/UI">
             </div>
             <div class="field">
               <label data-key="t-sobre">Sobre mi</label>
