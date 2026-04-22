@@ -1,0 +1,22 @@
+/* TEMPLATE 4: Executive */
+.tpl-executive { flex-direction: column; } /* LLEI AFADIDA: Soluciona error a TPL Executive */
+.tpl-executive .cv-top { background: var(--cv-accent); padding: 40px 48px 32px; color: var(--cv-accent-text-color, white); display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(auto, 30%); gap: 24px; align-items: center; }
+.tpl-executive .cv-photo { width: 100px; height: 100px; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tpl-executive .cv-photo i { font-size: 44px; color: rgba(255,255,255,.4); }
+.tpl-executive .cv-name { font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
+.tpl-executive .cv-role { font-size: 13px; opacity: .8; margin-top: 4px; }
+.tpl-executive .cv-contacts-top { display: flex; flex-direction: column; gap: 6px; text-align: right; font-size: 12px; opacity: .85; word-wrap: break-word; overflow-wrap: anywhere; word-break: break-all; }
+.tpl-executive .cv-body { display: grid; grid-template-columns: minmax(0, 1fr) 30%; }
+.tpl-executive .cv-main { padding: 32px 40px; }
+.tpl-executive .cv-side { background: #f5f5f7; padding: 28px 24px; }
+.tpl-executive .cv-sec-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--cv-accent); border-bottom: 1px solid var(--cv-accent); padding-bottom: 4px; margin-bottom: 14px; margin-top: 22px; }
+.tpl-executive .cv-sec-title:first-child { margin-top: 0; }
+.tpl-executive .cv-item { display: flex; flex-direction: column; margin-bottom: 14px; }
+.tpl-executive .cv-item-date { font-size: 11px; color: #999; padding-top: 2px; }
+.tpl-executive .cv-item-title { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+.tpl-executive .cv-item-sub { font-size: 11px; color: #777; margin-top: 2px; }
+.tpl-executive .cv-item-desc { font-size: 12px; color: #555; margin-top: 4px; line-height: 1.5; }
+.tpl-executive .side-sec h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #333; margin-bottom: 8px; font-weight: 700; }
+.tpl-executive .side-item { font-size: 12px; color: #555; margin-bottom: 6px; }
+
+.tpl-executive .cv-sobre-executive { font-size: 12px; opacity: .8; margin-top: 8px; line-height: 1.5; }

@@ -1,0 +1,22 @@
+/* TEMPLATE 8: Professional */
+.tpl-professional { flex-direction: column; background: #fff; padding: 0; }
+.tpl-professional .cv-header { display: flex; padding: 40px 48px; border-bottom: 3px solid var(--cv-accent); align-items: center; }
+.tpl-professional .cv-photo { width: 90px; height: 90px; border-radius: 4px; overflow: hidden; background: #f0f0f0; margin-right: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.tpl-professional .cv-photo i { font-size: 40px; color: #ccc; }
+.tpl-professional .cv-header-info { flex: 1; }
+.tpl-professional .cv-name { font-size: 32px; font-weight: 800; color: #111; letter-spacing: -1px; text-transform: uppercase; }
+.tpl-professional .cv-role { font-size: 15px; color: var(--cv-accent); font-weight: 600; margin-top: 4px; letter-spacing: 1px; }
+.tpl-professional .cv-contacts-right { text-align: right; font-size: 12px; color: #555; display: flex; flex-direction: column; gap: 4px; }
+.tpl-professional .cv-sobre-block { padding: 24px 48px; background: #f9f9f9; font-size: 13px; color: #444; line-height: 1.6; border-bottom: 1px solid #eaeaea; }
+.tpl-professional .cv-body { display: flex; padding: 32px 48px; gap: 32px; }
+.tpl-professional .cv-main-col { flex: 1; }
+.tpl-professional .cv-side-col { width: 230px; }
+.tpl-professional .cv-sec-title { font-size: 14px; font-weight: 700; color: #111; text-transform: uppercase; border-bottom: 2px solid var(--cv-accent); padding-bottom: 4px; margin-bottom: 16px; margin-top: 24px; position: relative; }
+.tpl-professional .cv-sec-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 1px; background: #111; }
+.tpl-professional .cv-sec-title:first-child { margin-top: 0; }
+.tpl-professional .cv-item { margin-bottom: 16px; }
+.tpl-professional .cv-item-title { font-size: 13.5px; font-weight: 700; color: #222; }
+.tpl-professional .cv-item-sub { font-size: 12px; color: var(--cv-accent); font-weight: 500; margin-top: 2px; }
+.tpl-professional .cv-item-desc { font-size: 12.5px; color: #555; margin-top: 4px; line-height: 1.5; }
+.tpl-professional .skill-bar { height: 5px; background: #eee; border-radius: 0; margin-top: 4px; border: 1px solid #ddd; }
+.tpl-professional .skill-bar-fill { height: 100%; background: var(--cv-accent); border-radius: 0; }

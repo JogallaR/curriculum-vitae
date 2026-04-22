@@ -1,0 +1,23 @@
+/* TEMPLATE 1: Classic Sidebar */
+.tpl-classic .cv-sidebar { width: 38%; max-width: 38%; padding: 32px 22px; background: var(--cv-accent); color: var(--cv-accent-text-color, white); display: flex; flex-direction: column; gap: 20px; }
+.tpl-classic .cv-main { width: 62%; max-width: 62%; padding: 40px 32px; }
+.tpl-classic .cv-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 16px; overflow: hidden; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; border: 3px solid rgba(255,255,255,.4); flex-shrink: 0; }
+.tpl-classic .cv-photo i { font-size: 50px; color: rgba(255,255,255,.5); }
+.tpl-classic .cv-name { font-size: 28px; font-weight: 700; color: var(--cv-accent); margin-bottom: 4px; }
+.tpl-classic .cv-role { font-size: 14px; color: var(--cv-accent2); font-weight: 400; margin-bottom: 24px; }
+.tpl-classic .sidebar-sec h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; opacity: .7; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 4px; }
+.tpl-classic .sidebar-sec p, .tpl-classic .sidebar-sec li { font-size: 12px; line-height: 1.6; }
+.tpl-classic .contact-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
+.tpl-classic .contact-item i { width: 14px; text-align: center; opacity: .7; }
+.tpl-classic .cv-sec-title { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--cv-accent); border-bottom: 2px solid var(--cv-accent2); padding-bottom: 5px; margin-bottom: 14px; margin-top: 24px; }
+.tpl-classic .cv-sidebar .cv-sec-title { color: var(--cv-accent-text-color, white); border-bottom-color: rgba(128,128,128,.3); }
+.tpl-classic .cv-sec-title:first-child { margin-top: 0; }
+.tpl-classic .cv-item { margin-bottom: 14px; }
+.tpl-classic .cv-item-title { font-size: 14px; font-weight: 600; color: #222; }
+.tpl-classic .cv-sidebar .cv-item-title { color: var(--cv-accent-text-color, white); }
+.tpl-classic .cv-item-sub { font-size: 12px; color: #666; margin-top: 2px; }
+.tpl-classic .cv-sidebar .cv-item-sub { color: var(--cv-accent-text-color, white); opacity: 0.8; }
+.tpl-classic .cv-item-desc { font-size: 12px; color: #555; margin-top: 4px; line-height: 1.5; }
+.tpl-classic .cv-sidebar .cv-item-desc { color: var(--cv-accent-text-color, white); opacity: 0.7; }
+.tpl-classic .skill-bar { height: 4px; background: rgba(128,128,128,.2); border-radius: 2px; margin-top: 4px; }
+.tpl-classic .skill-bar-fill { height: 100%; background: var(--cv-accent2); border-radius: 2px; }

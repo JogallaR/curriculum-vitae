@@ -3,10 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Creador de CV</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📄%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,8 +16,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <!-- SortableJS per al Drag and Drop -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- CSS plantilles -->
+  <link rel="stylesheet" href="assets/css/templates/classic.css">
+  <link rel="stylesheet" href="assets/css/templates/minimal.css">
+  <link rel="stylesheet" href="assets/css/templates/modern.css">
+  <link rel="stylesheet" href="assets/css/templates/executive.css">
+  <link rel="stylesheet" href="assets/css/templates/dark.css">
+  <link rel="stylesheet" href="assets/css/templates/creative.css">
+  <link rel="stylesheet" href="assets/css/templates/elegant.css">
+  <link rel="stylesheet" href="assets/css/templates/professional.css">
 </head>
 
 <body>
@@ -27,20 +38,20 @@
     </div>
     <div class="topbar-actions">
       <div class="custom-lang-select" tabindex="0" onblur="setTimeout(()=>this.classList.remove('open'), 200)">
-        <div class="lang-selected" id="langSelected" onclick="this.parentElement.classList.toggle('open')">
+        <button class="lang-selected" id="langSelected" onclick="this.parentElement.classList.toggle('open')">
           <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg"> <span
             data-key="lang-ca">Català</span>
-        </div>
+        </button>
         <div class="lang-options">
-          <div onclick="canviarIdioma('ca'); this.closest('.custom-lang-select').classList.remove('open')"><img
+          <button onclick="canviarIdioma('ca'); this.closest('.custom-lang-select').classList.remove('open')"><img
               src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Catalonia.svg"> <span
-              data-key="lang-ca">Català</span></div>
-          <div onclick="canviarIdioma('es'); this.closest('.custom-lang-select').classList.remove('open')"><img
+              data-key="lang-ca">Català</span></button>
+          <button onclick="canviarIdioma('es'); this.closest('.custom-lang-select').classList.remove('open')"><img
               src="https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_Espa%C3%B1a.svg"> <span
-              data-key="lang-es">Español</span></div>
-          <div onclick="canviarIdioma('en'); this.closest('.custom-lang-select').classList.remove('open')"><img
+              data-key="lang-es">Español</span></button>
+          <button onclick="canviarIdioma('en'); this.closest('.custom-lang-select').classList.remove('open')"><img
               src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg"> <span
-              data-key="lang-en">English</span></div>
+              data-key="lang-en">English</span></button>
         </div>
       </div>
       <button class="btn btn-ghost" onclick="importar()"><i class="fas fa-upload"></i><span
@@ -56,12 +67,12 @@
     <!-- EDITOR -->
     <div class="editor">
       <div class="editor-tabs">
-        <div class="editor-tab active" onclick="showTab('tab-content')" id="tab-btn-content" data-key="t-tab-content">
-          Contingut</div>
-        <div class="editor-tab" onclick="showTab('tab-design')" id="tab-btn-design" data-key="t-tab-design">Disseny
-        </div>
-        <div class="editor-tab" onclick="showTab('tab-modules')" id="tab-btn-modules" data-key="t-tab-modules">Mòduls
-        </div>
+        <button class="editor-tab active" onclick="showTab('tab-content')" id="tab-btn-content" data-key="t-tab-content">
+          Contingut</button>
+        <button class="editor-tab" onclick="showTab('tab-design')" id="tab-btn-design" data-key="t-tab-design">Disseny
+        </button>
+        <button class="editor-tab" onclick="showTab('tab-modules')" id="tab-btn-modules" data-key="t-tab-modules">Mòduls
+        </button>
       </div>
 
       <!-- TAB CONTINGUT -->
@@ -69,10 +80,10 @@
 
         <!-- Perfil -->
         <div class="editor-section open" id="sec-perfil">
-          <div class="editor-section-header" onclick="toggleSection('sec-perfil')">
+          <button class="editor-section-header" onclick="toggleSection('sec-perfil')">
             <div class="section-title"><i class="fas fa-user"></i><span data-key="t-perfil">Perfil</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="field">
               <label data-key="t-foto">Foto de perfil</label>
@@ -91,55 +102,62 @@
             </div>
             <div class="field">
               <label data-key="t-nom">Nom i Cognoms</label>
-              <input type="text" id="inNom" oninput="actualitzar(); spellCheck(this)" data-ph="ph-nom"
+              <input type="text" id="inNom" maxlength="50" oninput="debounceActualitzar(); spellCheck(this); updateCounter(this, 'count-inNom')" data-ph="ph-nom"
                 placeholder="Ex: Anna García">
+              <div class="char-counter" id="count-inNom">0 / 50</div>
             </div>
             <div class="field">
               <label data-key="t-prof">Professió</label>
-              <input type="text" id="inProf" oninput="actualitzar(); spellCheck(this)" data-ph="ph-prof"
+              <input type="text" id="inProf" maxlength="60" oninput="debounceActualitzar(); spellCheck(this); updateCounter(this, 'count-inProf')" data-ph="ph-prof"
                 placeholder="Ex: Dissenyadora UX/UI">
+              <div class="char-counter" id="count-inProf">0 / 60</div>
             </div>
             <div class="field">
               <label data-key="t-sobre">Sobre mi</label>
-              <textarea id="inSobreMi" oninput="actualitzar(); spellCheck(this)" data-ph="ph-sobre"
+              <textarea id="inSobreMi" maxlength="600" oninput="debounceActualitzar(); spellCheck(this)" data-ph="ph-sobre"
                 placeholder="Breu descripció professional..."></textarea>
+              <div class="char-counter" id="count-inSobreMi">0 / 600</div>
             </div>
           </div>
         </div>
 
         <!-- Contacte -->
         <div class="editor-section" id="sec-contacte">
-          <div class="editor-section-header" onclick="toggleSection('sec-contacte')">
+          <button class="editor-section-header" onclick="toggleSection('sec-contacte')">
             <div class="section-title"><i class="fas fa-address-card"></i><span data-key="t-contacte">Contacte</span>
             </div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="field">
               <label data-key="t-tel">Telèfon</label>
-              <input type="text" id="inTel" oninput="actualitzar()" data-ph="ph-tel" placeholder="+34 600 000 000">
+              <input type="text" id="inTel" maxlength="30" oninput="debounceActualitzar(); updateCounter(this, 'count-inTel')" data-ph="ph-tel" placeholder="+34 600 000 000">
+              <div class="char-counter" id="count-inTel">0 / 30</div>
             </div>
             <div class="field">
               <label data-key="t-mail">Correu electrònic</label>
-              <input type="text" id="inMail" oninput="actualitzar()" data-ph="ph-mail" placeholder="anna@exemple.com">
+              <input type="text" id="inMail" maxlength="60" oninput="debounceActualitzar(); updateCounter(this, 'count-inMail')" data-ph="ph-mail" placeholder="anna@exemple.com">
+              <div class="char-counter" id="count-inMail">0 / 60</div>
             </div>
             <div class="field">
               <label data-key="t-loc">Ubicació</label>
-              <input type="text" id="inLoc" oninput="actualitzar()" data-ph="ph-loc" placeholder="Barcelona, Catalunya">
+              <input type="text" id="inLoc" maxlength="60" oninput="debounceActualitzar(); updateCounter(this, 'count-inLoc')" data-ph="ph-loc" placeholder="Barcelona, Catalunya">
+              <div class="char-counter" id="count-inLoc">0 / 60</div>
             </div>
             <div class="field">
               <label data-key="t-web">Web / LinkedIn</label>
-              <input type="text" id="inWeb" oninput="actualitzar()" data-ph="ph-web" placeholder="linkedin.com/in/anna">
+              <input type="text" id="inWeb" maxlength="60" oninput="debounceActualitzar(); updateCounter(this, 'count-inWeb')" data-ph="ph-web" placeholder="linkedin.com/in/anna">
+              <div class="char-counter" id="count-inWeb">0 / 60</div>
             </div>
           </div>
         </div>
 
         <!-- Experiència -->
         <div class="editor-section open" id="sec-exp">
-          <div class="editor-section-header" onclick="toggleSection('sec-exp')">
+          <button class="editor-section-header" onclick="toggleSection('sec-exp')">
             <div class="section-title"><i class="fas fa-briefcase"></i><span data-key="t-exp">Experiència</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="items-list" id="list-exp"></div>
             <button class="btn-add-item" onclick="afegirItem('exp')"><i class="fas fa-plus"></i> <span
@@ -149,10 +167,10 @@
 
         <!-- Formació -->
         <div class="editor-section" id="sec-est">
-          <div class="editor-section-header" onclick="toggleSection('sec-est')">
+          <button class="editor-section-header" onclick="toggleSection('sec-est')">
             <div class="section-title"><i class="fas fa-graduation-cap"></i><span data-key="t-est">Formació</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="items-list" id="list-est"></div>
             <button class="btn-add-item" onclick="afegirItem('est')"><i class="fas fa-plus"></i> <span
@@ -162,10 +180,10 @@
 
         <!-- Habilitats -->
         <div class="editor-section" id="sec-skills">
-          <div class="editor-section-header" onclick="toggleSection('sec-skills')">
+          <button class="editor-section-header" onclick="toggleSection('sec-skills')">
             <div class="section-title"><i class="fas fa-star"></i><span data-key="t-skills">Habilitats</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="items-list" id="list-skills"></div>
             <button class="btn-add-item" onclick="afegirItem('skills')"><i class="fas fa-plus"></i> <span
@@ -175,10 +193,10 @@
 
         <!-- Idiomes -->
         <div class="editor-section" id="sec-idi">
-          <div class="editor-section-header" onclick="toggleSection('sec-idi')">
+          <button class="editor-section-header" onclick="toggleSection('sec-idi')">
             <div class="section-title"><i class="fas fa-language"></i><span data-key="t-idi">Idiomes</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="items-list" id="list-idi"></div>
             <button class="btn-add-item" onclick="afegirItem('idi')"><i class="fas fa-plus"></i> <span
@@ -188,10 +206,10 @@
 
         <!-- Altres -->
         <div class="editor-section" id="sec-altres">
-          <div class="editor-section-header" onclick="toggleSection('sec-altres')">
+          <button class="editor-section-header" onclick="toggleSection('sec-altres')">
             <div class="section-title"><i class="fas fa-plus-circle"></i><span data-key="t-altres">Altres</span></div>
             <i class="fas fa-chevron-down chevron"></i>
-          </div>
+          </button>
           <div class="editor-section-body">
             <div class="items-list" id="list-altres"></div>
             <button class="btn-add-item" onclick="afegirItem('altres')"><i class="fas fa-plus"></i> <span
@@ -206,58 +224,58 @@
           <div class="field">
             <label data-key="t-plantilla">Plantilla</label>
             <div class="template-grid" id="templateGrid">
-              <div class="tpl-card active" onclick="setTemplate('classic')" id="tpl-classic">
-                <div class="tpl-preview" style="background:#2c3e50;">
+              <button class="tpl-card active" onclick="setTemplate('classic')" id="tpl-classic">
+                <div class="tpl-preview" style="background:var(--cv-accent);">
                   <div style="flex:1;background:#f0f4f8;border-radius:0 3px 3px 0;"></div>
                 </div>
                 <div class="tpl-name">Classic</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('minimal')" id="tpl-minimal">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('minimal')" id="tpl-minimal">
                 <div class="tpl-preview"
                   style="background:#f8f9fa;border:1px solid #ddd;flex-direction:column;padding:4px;gap:2px;">
-                  <div style="height:12px;background:#2c3e50;border-radius:2px;"></div>
-                  <div style="height:6px;background:#3498db;border-radius:2px;width:60%;"></div>
+                  <div style="height:12px;background:var(--cv-accent);border-radius:2px;"></div>
+                  <div style="height:6px;background:var(--cv-accent2);border-radius:2px;width:60%;"></div>
                 </div>
                 <div class="tpl-name">Minimal</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('modern')" id="tpl-modern">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('modern')" id="tpl-modern">
                 <div class="tpl-preview">
-                  <div style="width:36%;background:#3498db;"></div>
+                  <div style="width:36%;background:var(--cv-accent2);"></div>
                   <div style="flex:1;background:#fff;"></div>
                 </div>
                 <div class="tpl-name">Modern</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('executive')" id="tpl-executive">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('executive')" id="tpl-executive">
                 <div class="tpl-preview" style="background:#f5f5f7;flex-direction:column;">
-                  <div style="height:30%;background:#2c3e50;"></div>
+                  <div style="height:30%;background:var(--cv-accent);"></div>
                   <div style="flex:1;display:flex;">
                     <div style="flex:1;"></div>
                     <div style="width:35%;background:#e8e8e8;"></div>
                   </div>
                 </div>
                 <div class="tpl-name">Executive</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('dark')" id="tpl-dark">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('dark')" id="tpl-dark">
                 <div class="tpl-preview" style="background:#111827;">
                   <div style="width:35%;background:#1f2937;"></div>
                   <div style="flex:1;background:#111827;"></div>
                 </div>
                 <div class="tpl-name">Dark</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('creative')" id="tpl-creative">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('creative')" id="tpl-creative">
                 <div class="tpl-preview" style="background:#f0f4f8;flex-direction:column;">
-                  <div style="height:20%;background:linear-gradient(90deg, #6c63ff, #ff6584);"></div>
+                  <div style="height:20%;background:linear-gradient(90deg, var(--cv-accent), var(--cv-accent2));"></div>
                   <div style="flex:1;display:flex;">
                     <div style="flex:1;margin:4px;background:#fff;border-radius:4px;"></div>
                   </div>
                 </div>
                 <div class="tpl-name">Creative</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('elegant')" id="tpl-elegant">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('elegant')" id="tpl-elegant">
                 <div class="tpl-preview" style="background:#fff;flex-direction:column;border:1px solid #eee;">
                   <div
                     style="height:25%;background:#fcfaf5;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:center;">
-                    <div style="width:40%;height:4px;background:#bea365;"></div>
+                    <div style="width:40%;height:4px;background:var(--cv-accent);"></div>
                   </div>
                   <div style="flex:1;display:flex;gap:4px;padding:4px;">
                     <div style="flex:1;background:#f9f9f9;"></div>
@@ -265,13 +283,13 @@
                   </div>
                 </div>
                 <div class="tpl-name">Elegant</div>
-              </div>
-              <div class="tpl-card" onclick="setTemplate('professional')" id="tpl-professional">
+              </button>
+              <button class="tpl-card" onclick="setTemplate('professional')" id="tpl-professional">
                 <div class="tpl-preview" style="background:#fff;flex-direction:column;border:1px solid #ddd;">
                   <div
-                    style="height:20%;background:#fff;border-bottom:2px solid #2c3e50;display:flex;justify-content:space-between;padding:4px;">
+                    style="height:20%;background:#fff;border-bottom:2px solid var(--cv-accent);display:flex;justify-content:space-between;padding:4px;">
                     <div style="width:12px;height:12px;background:#ddd;border-radius:2px;"></div>
-                    <div style="width:40%;height:4px;background:#2c3e50;margin-top:2px;"></div>
+                    <div style="width:40%;height:4px;background:var(--cv-accent);margin-top:2px;"></div>
                   </div>
                   <div style="flex:1;display:flex;padding:4px;gap:4px;">
                     <div style="flex:1;background:#fff;border-right:1px solid #eee;"></div>
@@ -279,51 +297,51 @@
                   </div>
                 </div>
                 <div class="tpl-name">Professional</div>
-              </div>
+              </button>
             </div>
           </div>
           <div class="field" style="margin-top:16px;">
             <label data-key="t-color-accent">Color principal</label>
             <div class="color-row" id="colorRow">
               <!-- Blaus i Celestes -->
-              <div class="color-swatch active" style="--c1:#2c3e50; --c2:#3498db;"
-                onclick="setColor('#2c3e50','#3498db')" data-c="#2c3e50" title="Navy & Blue"></div>
-              <div class="color-swatch" style="--c1:#0c4a6e; --c2:#0ea5e9;" onclick="setColor('#0c4a6e','#0ea5e9')"
-                data-c="#0c4a6e" title="Deep Blue & Sky"></div>
-              <div class="color-swatch" style="--c1:#0f2027; --c2:#ff7e67;" onclick="setColor('#0f2027','#ff7e67')"
-                data-c="#0f2027" title="Ocean & Coral"></div>
+              <button class="color-swatch active" style="--c1:#2c3e50; --c2:#3498db;"
+                onclick="setColor('#2c3e50','#3498db')" data-c="#2c3e50" title="Navy & Blue"></button>
+              <button class="color-swatch" style="--c1:#0c4a6e; --c2:#0ea5e9;" onclick="setColor('#0c4a6e','#0ea5e9')"
+                data-c="#0c4a6e" title="Deep Blue & Sky"></button>
+              <button class="color-swatch" style="--c1:#0f2027; --c2:#ff7e67;" onclick="setColor('#0f2027','#ff7e67')"
+                data-c="#0f2027" title="Ocean & Coral"></button>
 
               <!-- Verds i Turqueses -->
-              <div class="color-swatch" style="--c1:#004d40; --c2:#1de9b6;" onclick="setColor('#004d40','#1de9b6')"
-                data-c="#004d40" title="Dark Teal & Mint"></div>
-              <div class="color-swatch" style="--c1:#1b4332; --c2:#40916c;" onclick="setColor('#1b4332','#40916c')"
-                data-c="#1b4332" title="Forest & Light Green"></div>
-              <div class="color-swatch" style="--c1:#2f3640; --c2:#44bd32;" onclick="setColor('#2f3640','#44bd32')"
-                data-c="#2f3640" title="Charcoal & Neon Green"></div>
+              <button class="color-swatch" style="--c1:#004d40; --c2:#1de9b6;" onclick="setColor('#004d40','#1de9b6')"
+                data-c="#004d40" title="Dark Teal & Mint"></button>
+              <button class="color-swatch" style="--c1:#1b4332; --c2:#40916c;" onclick="setColor('#1b4332','#40916c')"
+                data-c="#1b4332" title="Forest & Light Green"></button>
+              <button class="color-swatch" style="--c1:#2f3640; --c2:#44bd32;" onclick="setColor('#2f3640','#44bd32')"
+                data-c="#2f3640" title="Charcoal & Neon Green"></button>
 
               <!-- Liles i Roses -->
-              <div class="color-swatch" style="--c1:#1e1e2f; --c2:#9b59b6;" onclick="setColor('#1e1e2f','#9b59b6')"
-                data-c="#1e1e2f" title="Charcoal & Violet"></div>
-              <div class="color-swatch" style="--c1:#6b21a8; --c2:#a855f7;" onclick="setColor('#6b21a8','#a855f7')"
-                data-c="#6b21a8" title="Royal Purple & Lavender"></div>
-              <div class="color-swatch" style="--c1:#1a1a2e; --c2:#e94560;" onclick="setColor('#1a1a2e','#e94560')"
-                data-c="#1a1a2e" title="Dark Purple & Pink"></div>
+              <button class="color-swatch" style="--c1:#1e1e2f; --c2:#9b59b6;" onclick="setColor('#1e1e2f','#9b59b6')"
+                data-c="#1e1e2f" title="Charcoal & Violet"></button>
+              <button class="color-swatch" style="--c1:#6b21a8; --c2:#a855f7;" onclick="setColor('#6b21a8','#a855f7')"
+                data-c="#6b21a8" title="Royal Purple & Lavender"></button>
+              <button class="color-swatch" style="--c1:#1a1a2e; --c2:#e94560;" onclick="setColor('#1a1a2e','#e94560')"
+                data-c="#1a1a2e" title="Dark Purple & Pink"></button>
 
               <!-- Vermells i Magentes -->
-              <div class="color-swatch" style="--c1:#4a0e2e; --c2:#d4af37;" onclick="setColor('#4a0e2e','#d4af37')"
-                data-c="#4a0e2e" title="Burgundy & Gold"></div>
-              <div class="color-swatch" style="--c1:#7f1d1d; --c2:#ef4444;" onclick="setColor('#7f1d1d','#ef4444')"
-                data-c="#7f1d1d" title="Dark Red"></div>
+              <button class="color-swatch" style="--c1:#4a0e2e; --c2:#d4af37;" onclick="setColor('#4a0e2e','#d4af37')"
+                data-c="#4a0e2e" title="Burgundy & Gold"></button>
+              <button class="color-swatch" style="--c1:#7f1d1d; --c2:#ef4444;" onclick="setColor('#7f1d1d','#ef4444')"
+                data-c="#7f1d1d" title="Dark Red"></button>
 
               <!-- Marrons i Taronges -->
-              <div class="color-swatch" style="--c1:#78350f; --c2:#f59e0b;" onclick="setColor('#78350f','#f59e0b')"
-                data-c="#78350f" title="Brown & Amber"></div>
+              <button class="color-swatch" style="--c1:#78350f; --c2:#f59e0b;" onclick="setColor('#78350f','#f59e0b')"
+                data-c="#78350f" title="Brown & Amber"></button>
 
               <!-- Escala de Grisos i Monocromàtics -->
-              <div class="color-swatch" style="--c1:#374151; --c2:#9ca3af;" onclick="setColor('#374151','#9ca3af')"
-                data-c="#374151" title="Dark Gray & Silver"></div>
-              <div class="color-swatch" style="--c1:#111111; --c2:#a6a6a6;" onclick="setColor('#111111','#a6a6a6')"
-                data-c="#111111" title="Black & Gray"></div>
+              <button class="color-swatch" style="--c1:#374151; --c2:#9ca3af;" onclick="setColor('#374151','#9ca3af')"
+                data-c="#374151" title="Dark Gray & Silver"></button>
+              <button class="color-swatch" style="--c1:#111111; --c2:#a6a6a6;" onclick="setColor('#111111','#a6a6a6')"
+                data-c="#111111" title="Black & Gray"></button>
             </div>
           </div>
           <div class="field" style="margin-top:12px;">
@@ -336,6 +354,14 @@
                 style="height:36px;width:50px;padding:2px;border:none;background:none;cursor:pointer;"
                 onchange="setCustomColor()">
               <span style="font-size:11px;color:var(--text2);" data-key="t-color-hint">Principal / Accent</span>
+            </div>
+          </div>
+          <div class="field" style="margin-top:20px;">
+            <label data-key="t-font">Tipografia</label>
+            <div style="display:flex;gap:8px;margin-top:4px;">
+              <button class="btn btn-ghost btn-sm active" onclick="setFont('DM Sans', this)">Sans</button>
+              <button class="btn btn-ghost btn-sm" onclick="setFont('Lora', this)">Serif</button>
+              <button class="btn btn-ghost btn-sm" onclick="setFont('Space Mono', this)">Mono</button>
             </div>
           </div>
         </div>
@@ -368,7 +394,20 @@
   <!-- INPUT OCULTA PER IMPORTAR -->
   <input type="file" id="importInput" accept=".json" style="display:none" onchange="carregarJSON(event)">
 
-  <script src="script.js"></script>
+  <!-- Scripts modulars -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/spellcheck.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <script src="assets/js/photo.js"></script>
+  <script src="assets/js/items.js"></script>
+  <script src="assets/js/modules.js"></script>
+  <script src="assets/js/templates.js"></script>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/render.js"></script>
+  <script src="assets/js/pdf.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,23 @@
+/* TEMPLATE 3: Modern Split */
+.tpl-modern .cv-sidebar { width: 36%; background: var(--cv-accent2); color: var(--cv-accent2-text-color, white); padding: 40px 24px; display: flex; flex-direction: column; gap: 22px; }
+.tpl-modern .cv-main { width: 64%; padding: 40px 32px; background: white; }
+.tpl-modern .cv-photo { width: 110px; height: 110px; border-radius: 12px; margin: 0 auto 16px; overflow: hidden; background: rgba(128,128,128,.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tpl-modern .cv-photo i { font-size: 50px; color: rgba(128,128,128,.5); }
+.tpl-modern .cv-name { font-size: 24px; font-weight: 700; color: var(--cv-accent); margin-bottom: 4px; letter-spacing: -.5px; }
+.tpl-modern .cv-role { font-size: 13px; color: var(--cv-accent2); font-weight: 500; background: rgba(52,152,219,.1); display: inline-block; padding: 3px 10px; border-radius: 20px; margin-bottom: 20px; }
+.tpl-modern .sidebar-sec h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
+.tpl-modern .contact-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
+.tpl-modern .contact-item i { background: rgba(128,128,128,.2); width: 22px; height: 22px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.tpl-modern .cv-sec-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: #999; border-bottom: 1px solid #e8e8e8; padding-bottom: 5px; margin-bottom: 14px; margin-top: 24px; }
+.tpl-modern .cv-sidebar .cv-sec-title { color: var(--cv-accent2-text-color, white); border-bottom-color: rgba(128,128,128,.3); }
+.tpl-modern .cv-sec-title:first-child { margin-top: 0; }
+.tpl-modern .cv-item { margin-bottom: 14px; }
+.tpl-modern .cv-item-title { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+.tpl-modern .cv-sidebar .cv-item-title { color: var(--cv-accent2-text-color, white); }
+.tpl-modern .cv-item-sub { font-size: 11px; color: var(--cv-accent2); font-weight: 500; margin-top: 2px; }
+.tpl-modern .cv-sidebar .cv-item-sub { color: var(--cv-accent2-text-color, white); opacity: 0.9; }
+.tpl-modern .cv-item-desc { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.5; }
+.tpl-modern .cv-sidebar .cv-item-desc { color: var(--cv-accent2-text-color, white); opacity: 0.8; }
+.tpl-modern .tag { display: inline-block; background: rgba(52,152,219,.1); color: var(--cv-accent2); padding: 2px 8px; border-radius: 4px; font-size: 11px; margin: 2px; }
+
+.tpl-modern .cv-sobre-modern { font-size: 12px; line-height: 1.6; }

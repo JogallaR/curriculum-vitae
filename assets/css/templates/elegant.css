@@ -1,0 +1,21 @@
+/* TEMPLATE 7: Elegant */
+.tpl-elegant { flex-direction: column; background: #fff; }
+.tpl-elegant .cv-header { background: #fcfaf5; padding: 40px 48px 64px; text-align: center; border-bottom: 1px solid #eaeaea; }
+.tpl-elegant .cv-name { font-family: 'Times New Roman', serif; font-size: 38px; color: var(--cv-accent); font-weight: normal; letter-spacing: 1px; }
+.tpl-elegant .cv-role { font-size: 15px; color: var(--cv-accent2); letter-spacing: 3px; text-transform: uppercase; margin-top: 8px; margin-bottom: 20px; }
+.tpl-elegant .cv-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; font-size: 12px; color: #666; }
+.tpl-elegant .contact-item { display: flex; align-items: center; gap: 6px; }
+.tpl-elegant .cv-body { display: flex; padding: 32px 48px; gap: 40px; position: relative; }
+.tpl-elegant .cv-photo-container { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,.05); background: #eee; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tpl-elegant .cv-photo { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.tpl-elegant .cv-photo i { font-size: 40px; color: #ccc; }
+.tpl-elegant .cv-content { display: flex; gap: 40px; width: 100%; margin-top: 30px; }
+.tpl-elegant .cv-main-col { flex: 1; min-width: 0; }
+.tpl-elegant .cv-side-col { width: 28%; border-left: 1px solid #eaeaea; padding-left: 30px; flex-shrink: 0; }
+.tpl-elegant .cv-sec-title { font-family: 'Times New Roman', serif; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--cv-accent); margin-bottom: 16px; border-bottom: 1px solid var(--cv-accent2); padding-bottom: 8px; margin-top: 28px; }
+.tpl-elegant .cv-sec-title:first-child { margin-top: 0; }
+.tpl-elegant .cv-item { margin-bottom: 18px; }
+.tpl-elegant .cv-item-title { font-size: 14px; font-weight: 600; color: #333; }
+.tpl-elegant .cv-item-sub { font-size: 11.5px; color: #777; margin-top: 3px; font-style: italic; }
+.tpl-elegant .cv-item-desc { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.6; }
+.tpl-elegant .cv-sobre-text { font-size: 13px; color: #444; line-height: 1.7; font-style: italic; margin-bottom: 16px; text-align: justify; }
